@@ -41,25 +41,20 @@ public class CarPriceTest {
         carTypeDiscountMap.clear();
     }
 
+
     @Test
-    public void testShouldApplyHatchbackDiscountDieselTypeLowerRange() throws Exception {
-        Car mahindraKUV100Diesel = new Car(CarType.HATCHBACK, FuelType.DIESEL);
-        double totalPrice = carPrice.totalPrice(mahindraKUV100Diesel, 450000);
-        assertEquals(435500, totalPrice, 0.001);
+    public void testShouldApplyHatchbackDiscountDieselTypeUpperRange() throws Exception {
+        Car maruthiSwiftDiesel = new Car(CarType.HATCHBACK, FuelType.DIESEL);
+        double totalPrice = carPrice.totalPrice(maruthiSwiftDiesel, 600000);
+        assertEquals(564000, totalPrice, 0.001);
     }
 
     @Test
     public void testShouldReturnSamePriceInCaseNoDiscountsApplicable() throws Exception {
         Car mahindraKUV100Diesel = new Car(CarType.HATCHBACK, FuelType.DIESEL);
         CarPrice carPrice = new CarPrice(new HashMap<>(), new HashMap<>());
+
         double totalPrice = carPrice.totalPrice(mahindraKUV100Diesel, 450000);
         assertEquals(450000, totalPrice, 0.001);
-    }
-
-    @Test
-    public void testShouldNotApplyAnyDiscountIfDiscountIsNotAvailable() throws Exception {
-        Car mahindraScorpioDiesel = new Car(CarType.SUV, FuelType.DIESEL);
-        double totalPrice = carPrice.totalPrice(mahindraScorpioDiesel, 1300000);
-        assertEquals(1270000, totalPrice, 0.001);
     }
 }
